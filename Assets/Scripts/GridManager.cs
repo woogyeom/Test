@@ -1,10 +1,12 @@
+using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Tilemaps;
 
 public class GridManager : MonoBehaviour
 {
     private static GridManager instance;
     public static GridManager Instance => instance;
+
+    private Dictionary<Unit, Vector2Int> unitPositions = new Dictionary<Unit, Vector2Int>();
 
     private void Awake()
     {
@@ -17,5 +19,13 @@ public class GridManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
+    public void RegisterUnit(Unit unit)
+    {
+        unitPositions.Add(unit, Vector2Int.zero);
+    }
     
+    public void UpdateUnitPosition(Unit unit, Vector2Int newPosition)
+    {
+        unitPositions[unit] = newPosition;
+    }
 }

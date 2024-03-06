@@ -2,10 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class Enemy : Unit
 {
 
     private BaseState curState;
+
+    public Enemy(int maxHealth, int attack, int defense) 
+        : base(maxHealth, attack, defense)
+    {
+        
+    }
 
     // Start is called before the first frame update
     void Start()
