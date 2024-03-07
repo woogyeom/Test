@@ -4,58 +4,52 @@ using UnityEngine;
 
 public class Unit : MonoBehaviour
 {
-    private Vector2Int position;
+    TileManager tileManager;
 
-    public int Health { get; set; }
-    public int MaxHealth { get; set; }
+    private Tile tile;
 
-    public int Attack { get; set; }
-    public int Defense { get; set; }
+    public int health;
+    public int maxHealth;
 
-    public float Accuracy { get; set; }
-    public float Avoidance { get; set; }
-    public float CritChance { get; set; }
+    public int attack;
+    public int defense;
+
+    public float accuracy = 0.95f;
+    public float avoidance = 0.05f;
+    public float critChance = 0.1f;
 
     public List<StatusEffect> currentStatusEffects;
-    
-    public Unit(int maxHealth, int attack, int defense)
-    {
-        this.MaxHealth = maxHealth;
-        Health = maxHealth;
-        this.Attack = attack;
-        this.Defense = defense;
-        Accuracy = 0.95f;
-        Avoidance = 0.05f;
-        CritChance = 0.1f;
-    }
 
     private void Start()
     {
-        position = new Vector2Int((int)transform.position.x, (int)transform.position.y);
-        
+        tileManager = TileManager.Instance;
+
+        Vector2Int position = new((int)transform.position.x, (int)transform.position.y);
+        tile = tileManager.GetTile(position);
     }
 
-    public void SetPosition(Vector2Int newPosition)
+    public void SetPosition(Tile tile)
     {
-        position = newPosition;
-
+        Vector2Int position = tileManager.GetPosition(tile);
+        transform.position = new Vector3(position.x, position.y);
     }
 
     public void Move(Direction direction)
     {
-        // Move one grid
-
+        // Move one tile
     }
 
-    public Vector2Int GetPosition()
+    public Tile GetPosition()
     {
-        return position;
+        Vector2Int position = new Vector2Int((int)transform.position.x, (int)transform.position.y);
+        tile = tileManager.GetTile(position);
+        return tile;
     }
 
     public void GetDamage(int damage)
     {
-        Health -= damage;
-        if (Health <= 0)
+        health -= damage;
+        if (health <= 0)
         {
             // Death
         }
@@ -75,6 +69,17 @@ public class Unit : MonoBehaviour
         if (currentStatusEffects.Contains(effect))
         {
             currentStatusEffects.Remove(effect);
+        }
+    }
+
+    public void TurnUpdate()
+    {
+        if (currentStatusEffects.Count != 0)
+        {
+            foreach (StatusEffect effect in currentStatusEffects)
+            {
+                effect.UpdateDuration();
+            }
         }
     }
 }

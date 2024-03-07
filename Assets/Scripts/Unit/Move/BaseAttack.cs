@@ -6,8 +6,8 @@ public class BaseAttack : Attack
 
     public override void ExecuteAction()
     {
-        int damage = (attacker.Attack - target.Defense);
-        float hitrate = (attacker.Accuracy - target.Avoidance);
+        int damage = (attacker.attack - target.defense);
+        float hitrate = (attacker.accuracy - target.avoidance);
 
         if (Random.Range(0, 100) <= hitrate)
         {

@@ -8,11 +8,11 @@ public class Hobble : StatusEffect
 
     public override void ApplyEffect()
     {
-        unitAffected.Avoidance -= 0.2f;
+        unitAffected.avoidance -= 0.25f;
     }
 
     public override void RemoveEffect()
     {
-        unitAffected.Avoidance += 0.2f;
+        unitAffected.avoidance += 0.25f;
     }
 }

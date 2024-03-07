@@ -8,11 +8,11 @@ public class Blind : StatusEffect
 
     public override void ApplyEffect()
     {
-        unitAffected.Accuracy -= 0.25f;
+        unitAffected.accuracy -= 0.25f;
     }
 
     public override void RemoveEffect()
     {
-        unitAffected.Accuracy += 0.25f;
+        unitAffected.accuracy += 0.25f;
     }
 }
