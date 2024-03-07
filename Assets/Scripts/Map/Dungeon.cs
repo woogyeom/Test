@@ -4,15 +4,41 @@ using UnityEngine;
 
 public class Dungeon : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private List<Room> rooms;
+    private List<Corridor> corridors;
+
+    public Dungeon()
     {
-        
+        rooms = new List<Room>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void AddRoom(Room room)
     {
-        
+        rooms.Add(room);
+    }
+
+    public void RemoveRoom(Room room)
+    {
+        rooms.Remove(room);
+    }
+
+    public List<Room> GetRooms()
+    {
+        return rooms;
+    }
+
+    public void AddCorridor(Corridor corridor)
+    {
+        corridors.Add(corridor);
+    }
+
+    public void RemoveCorridor(Corridor corridor)
+    {
+        corridors.Remove(corridor);
+    }
+
+    public List<Corridor> GetCorridors()
+    {
+        return corridors;
     }
 }

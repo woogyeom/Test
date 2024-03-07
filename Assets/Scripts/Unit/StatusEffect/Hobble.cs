@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class Hobble : StatusEffect
 {
-    public Hobble(Unit unit) : base(unit) {}
+    public Hobble(Unit unit) : base(unit)
+    {
+        duration = 2;
+    }
 
     public override void ApplyEffect()
     {

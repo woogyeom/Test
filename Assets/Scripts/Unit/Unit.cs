@@ -20,7 +20,7 @@ public class Unit : MonoBehaviour
 
     public List<StatusEffect> currentStatusEffects;
 
-    private void Start()
+    private void UnitStart()
     {
         tileManager = TileManager.Instance;
 
@@ -32,11 +32,6 @@ public class Unit : MonoBehaviour
     {
         Vector2Int position = tileManager.GetPosition(tile);
         transform.position = new Vector3(position.x, position.y);
-    }
-
-    public void Move(Direction direction)
-    {
-        // Move one tile
     }
 
     public Tile GetPosition()
@@ -81,5 +76,18 @@ public class Unit : MonoBehaviour
                 effect.UpdateDuration();
             }
         }
+    }
+
+    public void Idle()
+    {
+        
+    }
+
+    public void Move(Direction direction)
+    {
+        // Move one tile
+        Vector2Int newVector = tileManager.GetPosition(tile) + TileManager.GetDirectionVector(direction); 
+        tileManager.GetTile(newVector);
+
     }
 }

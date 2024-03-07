@@ -46,4 +46,26 @@ public class TileManager : MonoBehaviour
     {
         tileDict.Remove(position);
     }
+    
+
+    public static Vector2Int GetDirectionVector(Direction direction)
+    {
+        return direction switch
+        {
+            Direction.Up => Vector2Int.up,
+            Direction.Down => Vector2Int.down,
+            Direction.Left => Vector2Int.left,
+            Direction.Right => Vector2Int.right,
+            _ => Vector2Int.zero,
+        };
+
+    }
+}
+
+public enum Direction
+{
+    Up,
+    Down,
+    Right,
+    Left
 }

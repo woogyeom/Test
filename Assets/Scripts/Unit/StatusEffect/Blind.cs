@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class Blind : StatusEffect
 {
-    public Blind(Unit unit) : base(unit) {}
+    public Blind(Unit unit) : base(unit)
+    {
+        duration = 2;
+    }
 
     public override void ApplyEffect()
     {

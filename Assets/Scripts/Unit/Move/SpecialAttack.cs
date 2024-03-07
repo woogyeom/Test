@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public class BaseAttack : Move
+public class SpecialAttack : Move
 {
-    public BaseAttack(Unit actor, Unit target) : base(actor) { this.target = target; }
+    public SpecialAttack(Unit actor, Unit target) : base(actor) { this.target = target; }
 
     public override void ExecuteAction()
     {
@@ -14,11 +14,14 @@ public class BaseAttack : Move
             if (Random.Range(0, 100) <= actor.critChance)
             {
                 // Critical Hit
-
+                damage *= 2;
+                target.GetDamage(damage);
+                target.GetDamage(damage);
             }
             else
             {
                 // Hit
+                target.GetDamage(damage);
                 target.GetDamage(damage);
             }
         }

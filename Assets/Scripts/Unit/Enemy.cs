@@ -4,11 +4,16 @@ using UnityEngine;
 
 public class Enemy : Unit
 {
-
+    GameManager gameManager;
     private BaseState curState;
 
     void Start()
     {
+        gameManager = GameManager.Instance;
+        gameManager.AddEnemy(this);
+
+        UnitStart();
+
         TransitionToState(new IdleState(this));
     }
 

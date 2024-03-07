@@ -2,14 +2,12 @@ using UnityEngine;
 
 public class Player : Unit
 {
-
-    private void Start()
+    GameManager gameManager;
+    void Start()
     {
-        
-    }
+        gameManager = GameManager.Instance;
+        gameManager.SetPlayer(this);
 
-    private void Update()
-    {
-
+        UnitStart();
     }
 }

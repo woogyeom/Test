@@ -6,16 +6,8 @@ public class Tile : MonoBehaviour
     private TileManager tileManager;
 
     public Vector2Int position;
-    public enum TileType
-    {
-        Floor,
-        Wall,
-        Player,
-        Enemy,
-        Obstacle
-    }
-    private TileType tileType;
-    private Room room;
+    private bool isOccupied;
+    private Area area;
 
     private void Start()
     {
@@ -26,28 +18,28 @@ public class Tile : MonoBehaviour
         TileManager.Instance.AddTile(this);
     }
 
-    public TileType GetTileType()
+    public bool GetIsOccupied()
     {
-        return tileType;
+        return isOccupied;
     }
 
-    public void SetTileType(TileType tileType)
+    public void SetIsOccupied(bool isOccupied)
     {
-        this.tileType = tileType; 
+        this.isOccupied = isOccupied; 
     }
 
-    public Room GetRoom()
+    public Area GetArea()
     {
-        return room;
+        return area;
     }
 
-    public void SetRoom(Room room)
+    public void SetArea(Area area)
     {
-        this.room = room;
+        this.area = area;
     }
 
-    public void ClearRoom()
+    public void ClearArea()
     {
-        room = null;
+        area = null;
     }
 }

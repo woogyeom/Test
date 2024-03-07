@@ -7,6 +7,8 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance => instance;
 
     [SerializeField] private bool isPlayerTurn = true;
+
+    [SerializeField] private Player player;
     [SerializeField] private List<Enemy> enemies;
 
     private void Awake()
@@ -19,6 +21,7 @@ public class GameManager : MonoBehaviour
         instance = this;
         DontDestroyOnLoad(gameObject);
 
+        player = new Player();
         enemies = new List<Enemy>();
 
         Screen.sleepTimeout = SleepTimeout.NeverSleep;
@@ -54,5 +57,20 @@ public class GameManager : MonoBehaviour
         }
 
         EndTurn();
+    }
+
+    public void SetPlayer(Player player)
+    {
+        this.player = player;
+    }
+    
+    public void AddEnemy(Enemy enemy)
+    {
+        enemies.Add(enemy);
+    }
+
+    public void RemoveEnemy(Enemy enemy)
+    {
+        enemies.Remove(enemy);
     }
 }
