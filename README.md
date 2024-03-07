@@ -18,7 +18,8 @@ Using FSM named BaseState for Enemies.
 
 To-do
 - procedural dungeon generator
-- Some basic BaseStates(Idle, Patrol, Chase, Attack, Flee)
+- some basic Moves(Base Attack, Special Attack, Defend, Move)
+- some basic BaseStates(Idle, Patrol, Chase, Attack, Flee)
+- animations
 - new input system
 - ui
-- 
