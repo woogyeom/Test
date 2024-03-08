@@ -14,12 +14,22 @@ Hitrate = attacker.accuracy - target.avoidance
 
 GameManager manages turns.  
 TileManager provides the link between Tiles and Units.  
-Using FSM named BaseState for Enemies.
+Using FSM named BaseState for Enemies.  
 
-To-do
-- procedural dungeon generator
-- some basic Moves(Base Attack, Special Attack, Defend, Move)
-- some basic BaseStates(Idle, Patrol, Chase, Attack, Flee)
-- animations
-- new input system
-- ui
+To-do  
+- procedural dungeon generator  
+- some basic Moves(Base Attack, Special Attack, Defend, Move)  
+- some basic BaseStates(Idle, Patrol, Chase, Attack, Flee)  
+- animations  
+- new input system  
+- ui  
+
+Data Structure  
+- Unit: tile, sight, health, maxHealth, attack, defense, accuracy, avoidance, critChance, statusEffects  
+    ㄴ Player: exp, maxExp, level  
+    ㄴ Enemy: rewardLevel, curState  
+- Dungeon: rooms, corridors  
+  - Area: tileDict  
+      ㄴ Room:   
+      ㄴ Corridor: startRoom, endRoom  
+    -  Tile: position, isOccupied, area  
