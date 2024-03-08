@@ -5,22 +5,53 @@ using UnityEngine;
 public class DungeonGenerator : MonoBehaviour
 {
     GameManager gameManager;
+    BSP bsp;
+
     Dungeon dungeon;
     List<Room> rooms;
     List<Corridor> corridors;
 
     public int numRooms = 10;
+    public int dungeonX = 0;
+    public int dungeonY = 0;
+    private Vector2Int topLeft;
+    public int dungeonWidth = 100;
+    public int dungeonHeight = 100;
 
     private void Start()
     {
-        gameManager = GameManager.Instance;
-        dungeon = new Dungeon();
-        rooms = dungeon.GetRooms();
-        corridors = dungeon.GetCorridors();
+        
+    }
+
+    private void ClearDungeon()
+    {
+        List<Area> combinedArea = new List<Area>();
+        combinedArea.AddRange(rooms);
+        combinedArea.AddRange(corridors);
+
+        foreach (Area area in combinedArea)
+        {
+            Dictionary<Vector2Int, Tile> tileDict = area.GetTileDict();
+            foreach (Tile tile in tileDict.Values)
+            {
+                tile.Destroy();
+            }
+        }
+
+        rooms.Clear();
+        corridors.Clear();
+        dungeon = null;
     }
 
     public void GenerateDungeon()
     {
+        topLeft = new Vector2Int(dungeonX, dungeonY);
+        dungeon = new Dungeon(topLeft, dungeonWidth, dungeonHeight);
+        bsp = new BSP(dungeon);
+        gameManager = GameManager.Instance;
+        rooms = dungeon.GetRooms();
+        corridors = dungeon.GetCorridors();
+
         // 던전 생성
         GenerateRooms();
         GenerateCorridor();

@@ -21,6 +21,15 @@ public class Area : MonoBehaviour
         }
     }
 
+    public void RemoveTile(Tile tile)
+    {
+        if (tileDict.ContainsKey(tile.position))
+        {
+            tile.ClearArea();
+            tileDict.Remove(tile.position);
+        }
+    }
+
     public Dictionary<Vector2Int, Tile> GetTileDict()
     {
         return tileDict;

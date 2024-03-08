@@ -40,6 +40,15 @@ public class Tile : MonoBehaviour
 
     public void ClearArea()
     {
+        if (area == null) return;
+        area.RemoveTile(position);
         area = null;
+    }
+
+    public void Destroy()
+    {
+        if (this.gameObject == null) return;
+        ClearArea();
+        Destroy(this.gameObject);
     }
 }

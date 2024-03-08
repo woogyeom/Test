@@ -8,8 +8,8 @@ public class Unit : MonoBehaviour
 
     private Tile tile;
 
-    public int health;
-    public int maxHealth;
+    private int health;
+    private int maxHealth;
 
     public int attack;
     public int defense;
@@ -20,7 +20,7 @@ public class Unit : MonoBehaviour
 
     public List<StatusEffect> currentStatusEffects;
 
-    private void UnitStart()
+    protected void UnitStart()
     {
         tileManager = TileManager.Instance;
 
@@ -41,13 +41,37 @@ public class Unit : MonoBehaviour
         return tile;
     }
 
-    public void GetDamage(int damage)
+    public (int damage, bool crit) CalculateDamage(Unit target)
     {
+        int damage = Mathf.Max(attack - target.defense, 0);
+        float hitrate = accuracy - target.avoidance;
+        bool crit = false;
+        if (Random.Range(0, 100) <= hitrate)
+        {
+            if (Random.Range(0, 100) <= critChance)
+            {
+                damage *= 2;
+                crit = true;
+            }
+        }
+        else damage = 0;
+        return (damage, crit);
+    }
+
+    public void GetDamage(int damage, bool crit)
+    {
+        if (damage < 0) return;
         health -= damage;
         if (health <= 0)
         {
             // Death
         }
+    }
+    
+    public void GetHealed(int heal)
+    {
+        if (heal < 0) return;
+        health = Mathf.Max(health + heal, maxHealth);
     }
 
     public void ApplyStatusEffect(StatusEffect effect)
