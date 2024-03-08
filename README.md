@@ -23,3 +23,13 @@ To-do
 - animations
 - new input system
 - ui
+
+Data Structure
+- Unit: tile, sight, health, maxHealth, attack, defense, accuracy, avoidance, critChance, statusEffects
+    ㄴ Player: exp, maxExp, level
+    ㄴ Enemy: rewardLevel, curState
+- Dungeon: rooms, corridors
+  - Area: tileDict
+      ㄴ Room: 
+      ㄴ Corridor: startRoom, endRoom
+    -  Tile: position, isOccupied, area
