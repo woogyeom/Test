@@ -6,7 +6,11 @@ public class Guard : StatusEffect
 {
     private int increasedDefense;
 
-    public Guard(Unit unit) : base(unit) { increasedDefense = 0; duration = 1;}
+    public Guard(Unit unit) : base(unit)
+    {
+        increasedDefense = 0;
+        duration = 1;
+    }
 
     public override void ApplyEffect()
     {

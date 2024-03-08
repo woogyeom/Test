@@ -6,6 +6,7 @@ public class Enemy : Unit
 {
     GameManager gameManager;
     private BaseState curState;
+    private int rewardLevel;
 
     void Start()
     {
@@ -32,5 +33,16 @@ public class Enemy : Unit
     public void ExecuteAction()
     {
         curState.OnStateAction();
+    }
+}
+
+public class Reward
+{
+    public int exp;
+    public List<Item> items;
+
+    public Reward()
+    {
+        
     }
 }
